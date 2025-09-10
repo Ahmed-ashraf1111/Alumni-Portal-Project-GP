@@ -17,11 +17,21 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-const graduateRoutes = require("./routes/graduates.route");
-app.use("/graduates", graduateRoutes);
+// const graduateRoutes = require("./routes/graduates.route");
+// app.use("/alumni-portal/graduates", graduateRoutes);
+
+// const adminRoutes = require("./routes/admin.route");
+// app.use("/alumni_portal/admin", adminRoutes);
+
+const postsRoutes = require("./routes/post.route");
+app.use("/alumni-portal/posts", postsRoutes);
+
+const usersRoutes = require("./routes/users.route");
+app.use("/alumni-portal/users", usersRoutes);
 
 // sync db
-sequelize.sync()
+sequelize
+  .sync()
   .then(() => console.log("Database synced"))
   .catch((err) => console.error("Error syncing database:", err));
 
